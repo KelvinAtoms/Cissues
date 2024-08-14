@@ -1,0 +1,113 @@
+b)i.
+Nhập vào 1 số x, xác định tính chẵn lẻ của x
+Code:
+#include <iostream>	//thư viện
+using namespace std;	//khai báo cú pháp để không lặp lại câu lệnh std ở một số hàm đặc biệt
+int main(){	// thân chương trình 
+int x;cin>>x;	//khai báo và nhập giá trị cho biến x từ bàn phím
+if((x&1)==0)	//Toán tử '&' thực hiện phép toán AND trên từng bit tương ứng của hai số. Kết quả sẽ là 1 nếu cả hai bit đều là 1, ngược lại kết quả sẽ là 0 (x%2==0) cũng được
+cout<<x;
+return 0;	//hàm kết thúc chương trình và báo lỗi (nếu có)
+}
+ii. Nhập vào một số x, xác định số x là số dương, hay số âm hoặc bằng 0 ?
+Code:
+#include <iostream>
+using namespace std;
+int main(){
+int x;cin>>x;
+if(x>0)cout<<"Duong";
+else if(x<0)cout<<"Am";
+else cout<<"Khong";
+return 0;
+}
+iii. Nhập vào 2 số nguyên a,b.Tìm số lớn nhất.
+Code:
+#include<iostream>
+using namespace std;
+int main(){
+int a,b;cin>>a>>b;
+if(a>b)cout<<a;else cout<<b;
+return 0;
+}
+iv. Nhập vào 3 số nguyên a,b,c.Tìm số lớn nhất và nhỏ nhất trong 3 số đó.
+Code:
+#include <iostream>
+using namespace std;
+int main(){
+int a,b,c;cin>>a>>b>>c;
+int max=a,min=a;
+if(b>max)max=b;else if(b<min)min=b;
+if(c>max)max=c;else if(c<min)min=c;
+cout<<max<<" "<<min;
+return 0;
+}
+v. Giải phương trình Ax+B=0.Với A,B là hai hệ số được nhập vào từ bàn phím
+Code:
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main(){
+int a,b;cin>>a>>b;
+if(a==0){if(b==0)cout<<"VSN";else cout<<"VN";}
+else {if(b==0)cout<<"x=0";else cout<<setprecision(3)<<fixed<<(float)-b/a;}
+return 0;
+}
+vi. Nhập vào một số , xác định xem có phải là số chính phương hay không?
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main(){
+int n;cin>>n;
+if(sqrt(n)==(int)sqrt(n))cout<<n;else cout<<"Khong phai so chinh phuong";
+return 0;
+}
+c)
+Bài tập 1:Nhập vào một số x, xác định tính chẵn lẽ của x
+#include <iostream>
+using namespace std;
+int main(){
+int x;cin>>x;
+switch(x%2){
+case 0 : cout<<"Chan";break;
+case 1 : cout<<"Le";break;
+}
+return 0;
+}
+Bài tập 2: Viết chương trình cho trò chơi thi trắc nghiệm
+-Xuất ra màn hình một câu hỏi và 4 đáp án a,b,c,d.
+-Nếu người chơi chọn đáp án sai thì xuất câu thông báo "sai rồi"
+-Còn nếu người chơi chọn đáp án đúng thì thông báo "đúng rồi"
+#include <iostream>
+using namespace std;
+int main(){
+char n;
+cout<<"Skibidi toilet?\na.sigma\nb.mewing\nc.ohio\nd.gyatt\n";cin>>n;
+switch(n){
+case 'a' :cout<<"dung roi";break;
+case 'b' :cout<<"sai roi";break;
+case 'c' :cout<<"sai roi";break;
+case 'd' :cout<<"sai roi";break;
+default: cout<<"ill eat ur baby";break;
+}
+return 0;
+}
+Bài tập 3: Xuất kết quả của phép toán
+ A Phép_toán B
+Với A,B là 2 số thực nhập từ bàn phép(it really said that XD )
+Và phép toán là một trong các phép toán sau: +,-,*,/
+Bạn hãy viết ra chương trình xuất ra kết quả của phép toán trên phù hợp với phép toán người dung nhập vào.
+VD: 2(A) 3(B) *(Phép toán) => 2*3=6;
+#include <iostream>
+using namespace std;
+int main(){
+float a,b;cin>>a>>b;
+char c;cin>>c;
+switch(c){
+case '+' : cout<<a<<c<<b<<"="<<a+b;break;
+case '-' : cout<<a<<c<<b<<"="<<a-b;break;
+case '*' : cout<<a<<c<<b<<"="<<a*b;break;
+case '/' : cout<<a<<c<<b<<"="<<a/b;break;
+default : cout<<"lmao khong ai quan nen bai tro a!";break;
+}
+    return 0;
+}

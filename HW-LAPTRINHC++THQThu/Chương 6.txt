@@ -1,0 +1,154 @@
+Bài tập 
+i.Thực hiện các phép toán của mảng (1 chiều và 2 chiều):
+-Khởi tạo 1 mảng
+-Xuất các giá trị của mảng
+-Thêm 1 phần tử vào mảng(1 chiều)
+-Xóa một phần tử trong mảng(1 chiều)
+Code:
+#include <iostream>
+using namespace std;
+int main(){int n;cin>>n;
+int a[100],x,dem=0;
+while(dem<n){cin>>x;
+a[dem]=x;dem++;
+}
+for(int i=0;i<n;i++)cout<<a[i]<<" ";
+cout<<endl;
+int pos,val;cin>>pos>>val;
+if(pos<0||pos>n) {cout<<"Position ko hop li,hay nhap lai position";cin>>pos;cout<<endl;}
+for(int i=n;i>pos;i--){
+a[i]=a[i-1];
+}a[pos]=val;n++;
+for(int i=0;i<n;i++)cout<<a[i]<<" ";
+cin>>pos>>val;
+if(pos<0||pos>n) {cout<<"Position ko hop li,hay nhap lai position";cin>>pos;cout<<endl;}
+for(int i=pos;i<n;i++){
+a[i]=a[i+1];
+}a[n]=0;n--;
+for(int i=0;i<n;i++)cout<<a[i]<<" ";
+return 0;
+}
+
+#include<iostream>
+using namespace std;
+int main(){
+int a[100][100];
+int col,row;cin>>col>>row;
+for(int i=0;i<col;i++){
+for(int j=0;j<row;j++){
+cin>>a[i][j];
+}}
+for(int i=0;i<col;i++){
+for(int j=0;j<row;j++){
+cout<<a[i][j]<<" ";
+}}
+return 0;
+}
+
+ii.Nhập vào thông tin của 1 học sinh
+-Họ tên
+-Năm sinh
+-Điểm các môn học(lưu vào mảng)
+Xuất ra điểm trung bình của sinh viên đó
+Code:
+#include <iostream>
+using namespace std;
+struct hocSinh{
+string name,dob;
+float a[3];
+public:
+friend istream& operator>>(istream& in, hocSinh &hs){
+getline(in,hs.name);getline(in,hs.dob);in>>hs.a[0]>>hs.a[1]>>hs.a[2];
+return in;
+}
+float Average(hocSinh hs){
+return (hs.a[0]+hs.a[1]+hs.a[2])/3.0;}
+friend ostream& operator<<(ostream& out,hocSinh hs){
+out<<hs.name<<" "<<hs.dob<<" "<<hs.Average(hs);
+return out;}
+}a;
+
+int main(){
+cin>>a;
+cout<<a;
+return 0;
+}
+
+iii.Nhập vào 1 day số nguyên,tìm phần tử lớn nhất, nhỏ nhất của day(1 chiều,2 chiều)
+Code:
+#include <iostream>
+using namespace std;
+int main(){
+int a[100],max,min;int n;cin>>n;
+for(int i=0;i<n;i++){
+cin>>a[i];}
+max=a[0];min=a[0];
+for(int i=0;i<n;i++){
+if(a[i]>max)max=a[i];
+if(a[i]<min)min=a[i];
+}cout<<max<<" "<<min;return 0;}
+
+#include <iostream>
+using namespace std;
+int main(){
+int a[100][100];int col,row;cin>>col>>row;
+for(int i=0;i<row;i++){
+for(int j=0;j<col;j++){
+cin>>a[i][j];}
+}
+int max=a[0][0],min=a[0][0];
+for(int i=0;i<row;i++){
+for(int j=0;j<col;j++){
+if(a[i][j]>max)max=a[i][j];
+if(a[i][j]<min)min=a[i][j];
+}
+}cout<<max<<" "<<min;
+return 0;
+}
+
+iv.Nhập vào 1 day số nguyên 
+Xuất ra 2 day số:
+-Dãy những số âm của mảng
+-Dãy những số dương của mảng
+Code:
+#include<iostream>
+using namespace std;
+int main(){
+int a[100],b[100],t1=0,t2=0,x;int k,dem=0;cin>>k;
+while(cin>>x){
+if(x<0){a[t1]=x;t1++;}
+if(x>0){b[t2]=x;t2++;}dem++;if(dem==k)break;
+}
+for(int i=0;i<t1;i++)cout<<a[i]<<" ";
+cout<<endl;
+for(int i=0;i<t2;i++)cout<<b[i]<<" ";
+}
+
+v.Nhập vào 1 day số nguyên
+Xuất ra 2 day số:
+-Dãy những số nguyên tố
+-Dãy những số chính phương
+Code:
+#include<iostream>
+#include <cmath>
+using namespace std;
+int main(){
+int a[100],b[100],t1=0,t2=0,x;int k,dem=0;cin>>k;
+int scp;
+bool t3=true;
+while(cin>>x){scp=sqrt(x);
+if(sqrt(x)==scp){a[t1]=x;t1++;}
+ if(x==2){b[t2]=x;t2++;}
+else{
+for(int i=2;i<=scp;i++){
+if(x%i==0) t3=false;
+}
+if(t3==true){b[t2]=x;t2++;}
+t3=true;}
+dem++;if(dem==k)break;
+}
+for(int i=0;i<t2;i++)cout<<b[i]<<" ";
+cout<<endl;
+for(int i=0;i<t1;i++)cout<<a[i]<<" ";
+return 0;
+}

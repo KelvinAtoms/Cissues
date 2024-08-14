@@ -1,0 +1,202 @@
+Bài tập bố sung:
+1. Nhập vào 1 mảng 2 chiều n x n (ma trận vuông)
+-Tính tổng các số hạng trên đường chéo chính
+-Tính tổng các số hạng trên đường chéo phụ
+-Duyệt phân nửa trên của đường chéo chính
+#include <iostream>
+using namespace std;
+int main(){
+int n;cin>>n;
+int a[n][n],s=0,s1=0;
+for(int i=0;i<n;i++){
+for(int j=0;j<n;j++){cin>>a[i][j];if(i==j)s+=a[i][j];}}
+cout<<s<<endl;
+for(int i=0;i<n;i++){s1+=a[i][n-1-i];}
+cout<<s1<<endl;
+for(int i=0;i<n;i++){
+for(int j=i;j<n;j++){cout<<a[i][j]<<" ";}}
+return 0;
+}
+
+2.sắp xếp tăng dần, giảm dần các giá trị của mảng 1 chiều
+#include<iostream>
+using namespace std;
+int main(){
+int n;cin>>n;
+int a[n],posmin,posmax,temp;
+for(int i=0;i<n;i++)cin>>a[i];
+for(int i=0;i<n;i++){posmin=i;
+for(int j=1+i;j<n;j++){if(a[j]<a[posmin])posmin=j;}
+temp=a[posmin];
+a[posmin]=a[i];
+a[i]=temp;
+}
+for(int i=0;i<n;i++)cout<<a[i]<<" ";cout<<endl;
+for(int i=0;i<n;i++){posmax=i;
+for(int j=1+i;j<n;j++){if(a[j]>a[posmax])posmax=j;}
+temp=a[posmax];
+a[posmax]=a[i];
+a[i]=temp;
+}
+for(int i=0;i<n;i++)cout<<a[i]<<" ";
+return 0;
+}
+
+3.Bài tập về phân số
+-Nhập vào 2 phân số(phân số gồm có tử và mẫu)
+-Tính tổng,hiệu,tích,thương của 2 phân số
+-Rút gọn phân số
+Code:
+#include<iostream>
+using namespace std;
+int ucln(int a,int b){int r=a+b,d;
+while(b!=0){d=a%b;a=b;b=d;r=a;}return r;
+}
+struct PS{
+int tu,mau;
+public:
+friend istream& operator>>(istream& in,PS &ps){
+in>>ps.tu>>ps.mau;
+return in;}
+friend ostream& operator<<(ostream& out,PS ps){
+out<<ps.tu<<"/"<<ps.mau;
+return out;}
+};
+PS rutGon(PS &ps){PS a; a=ps;
+ps.tu/=ucln(a.tu,a.mau);
+ps.mau/=ucln(a.tu,a.mau);
+return ps;}
+PS tong(PS a,PS b){PS tong;
+tong.tu=a.tu*b.mau+a.mau*b.tu;
+tong.mau=a.mau*b.mau;
+tong=rutGon(tong);
+return tong;
+}
+PS hieu(PS a,PS b){PS tong;
+tong.tu=a.tu*b.mau-a.mau*b.tu;
+tong.mau=a.mau*b.mau;
+tong=rutGon(tong);
+return tong;
+}
+PS nhan(PS a,PS b){PS tong;
+tong.tu=a.tu*b.tu;
+tong.mau=a.mau*b.mau;
+tong=rutGon(tong);
+return tong;
+}
+PS chia(PS a,PS b){PS tong;
+tong.tu=a.tu*b.mau;
+tong.mau=a.mau*b.tu;
+tong=rutGon(tong);
+return tong;
+}
+int main(){
+    PS a;PS b;
+    cin>>a>>b;
+    PS t=tong(a,b);
+    cout<<"Tong: "<<t;
+    t=hieu(a,b);cout<<endl;
+    cout<<"Hieu: "<<t;
+    t=nhan(a,b);cout<<endl;
+    cout<<"Nhan: "<<t;
+    t=chia(a,b);cout<<endl;
+    cout<<"Chia: "<<t;
+return 0;
+}
+4.Xuất ra màn hình các hình sao(với chiều cao của mỗi hình là một số nguyên dương h được nhập từ bàn phím)
+4 typé  tam giác vuông trái(phải), tam giác đều trên(ngược)
+#include <iostream>
+using namespace std;
+void t1(int n){
+for(int i=1;i<=n;i++){
+for(int j=1;j<=i;j++){cout<<"*";
+}if(i!=n)cout<<endl;
+}cout<<endl;
+}
+void t2(int n){
+for(int i=n;i>0;i--){
+for(int j=1;j<=n;j++){if(j>=i)cout<<"*";else cout<<" ";
+}if(i!=1)cout<<endl;
+}cout<<endl;
+}
+void t3(int n){
+for(int i=1;i<=n;i++){
+for(int j=1;j<=2*n-1;j++){if(j>=n-i+1&&j<=n+i-1)cout<<"*";else cout<<" ";}if(i!=n)cout<<endl;
+}cout<<endl;
+}
+void t4(int n){
+for(int i=1;i<=n;i++){
+for(int j=1;j<=2*n-1;j++){if(j>i-1&&j<2*n-i+1)cout<<"*";else cout<<" ";}if(i!=n)cout<<endl;
+}cout<<endl;
+}
+int main(){int n;
+cin>>n;
+t1(n);
+t2(n);
+t3(n);
+t4(n);
+return 0;
+}
+
+5.Nhập vào một chuỗi s và kí tự c,kiểm tra xem trong chuỗi s có ký tự c hay khôgn,nếu có thì xuất vị trí của c trong s,nếu không thì xuất ra giá trị -1
+#include <iostream>
+#include <cstring>  // Thư viện cho hàm strlen
+using namespace std;
+
+int main() {
+    char s[100], c;
+    int a[100],k=0;
+    int pos = -1;
+
+    cout << "Nhập chuỗi: ";
+    cin.getline(s, 100);  // Đọc chuỗi ký tự từ bàn phím
+
+   
+    cin >> c;
+cout<<strlen(s)<<endl;
+    // Duyệt qua chuỗi để tìm ký tự c
+    for (int i = 0; i < strlen(s); i++) {
+        if (s[i] == c) {a[k]=i;k++;
+            pos = i;  // Gán vị trí của ký tự c
+              // Thoát vòng lặp khi tìm thấy ký tự c
+        }
+    }
+
+    // Xuất kết quả
+    if (pos != -1) {
+        cout << "Ký tự '" << c << "' xuất hiện ở vị trí: " ;
+        for(int i=0;i<k;i++)cout<<a[i]+1<<" ";
+    } else {
+        cout << "-1" << endl;  // Không tìm thấy ký tự c trong chuỗi
+    }
+
+    return 0;
+}
+
+6Tương tự như bài tập 5,nhưng thay vì kí tự c thì ta thay bằng chuỗi s2
+#include <iostream>
+#include <cstring>  // Thư viện cho hàm strlen và strstr
+using namespace std;
+
+int main() {
+    char s[100], s2[100];
+    int pos = -1;
+
+    cout << "Nhập chuỗi s: ";
+    cin.getline(s, 100);  // Đọc chuỗi s từ bàn phím
+
+    cout << "Nhập chuỗi s2: ";
+    cin.getline(s2, 100);  // Đọc chuỗi s2 từ bàn phím
+
+    // Tìm vị trí của chuỗi s2 trong chuỗi s
+    char* found = strstr(s, s2);
+
+    if (found != nullptr) {
+        pos = found - s;  // Tính toán vị trí của s2 trong s
+        cout << "Chuỗi '" << s2 << "' xuất hiện ở vị trí: " << pos << endl;
+    } else {
+        cout << "-1" << endl;  // Không tìm thấy chuỗi s2 trong s
+    }
+
+    return 0;
+}

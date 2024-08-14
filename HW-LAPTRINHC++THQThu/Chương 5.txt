@@ -1,0 +1,119 @@
+Bài tập cấu trúc
+1)Viết chương trình nhập vào 2 phân số ps1, ps2
+-Tính tổng,hiệu,tích, nhân 2 phân số đó, kết quả trả về là phân số
+(Lưu ý phải kiểm tra tính đúng đắn của dữ liệu nhập vào,ví dụ mẫu phải luôn khác không)
+Code
+#include <iostream>
+using namespace std;
+struct phanSo{
+int tu,mau;
+}ps1,ps2;
+int main (){
+cin>>ps1.tu>>ps1.mau>>ps2.tu>>ps2.mau;
+if(ps1.mau==0||ps2.mau==0){cout<<"Mau phai khac khong !";return 0;}
+cout<<"Tong: ";
+int temp=0,tu,mau;
+mau=ps1.mau*ps2.mau;
+tu=ps1.tu*ps2.mau+ps2.tu*ps1.mau;
+int ucln=0,r,d;
+int temp1=mau,temp2=tu;
+while(temp1!=0){
+	d=temp2%temp1;
+temp2=temp1;
+temp1=d;
+ucln=temp2;
+}
+ temp1=mau,temp2=tu;
+temp2=temp2/ucln;
+temp1/=ucln;
+cout<<temp2<<"/"<<temp1<<"\nHieu: ";
+tu=ps1.tu*ps2.mau-ps2.tu*ps1.mau;
+temp1=mau,temp2=tu;
+temp2=temp2/ucln;
+temp1/=ucln;
+cout<<temp2<<"/"<<temp1<<"\nNhan: ";
+tu=ps1.tu*ps2.tu;
+temp1=mau,temp2=tu;
+while(temp1!=0){
+	d=temp2%temp1;
+temp2=temp1;
+temp1=d;
+ucln=temp2;
+}
+temp1=mau,temp2=tu;
+temp2=temp2/ucln;
+temp1/=ucln;
+cout<<temp2<<"/"<<temp1<<"\nChia: ";
+tu=ps1.tu*ps2.mau;
+mau=ps1.mau*ps2.tu;
+temp1=mau,temp2=tu;
+while(temp1!=0){
+	d=temp2%temp1;
+temp2=temp1;
+temp1=d;
+ucln=temp2;
+}
+temp1=mau,temp2=tu;
+temp2=temp2/ucln;
+temp1/=ucln;
+cout<<temp2<<"/"<<temp1;
+return 0;
+}
+2)Viết chương trình nhâp vào 3 điểm A,B,C trong hệ trục tọa độ Oxy, hãy:
+- Kiểm tra xem 3 điểm đó có thẳng hang hay không
+-Tính khoảng cách từ A đến B,A đến C, và B đến C
+-Nếu A,B,C không thằng hang hãy tính diện tích, chu vi của tam giác ABC.
+Code:
+#include <iostream>
+#include<cmath>
+using namespace std;
+struct toaDo {
+float x,y;
+}a,b,d;
+int main(){int i=0;
+cin>>a.x>>a.y>>b.x>>b.y>>d.x>>d.y;
+float b1=a.x/b.x,b2=a.y/b.y,b3=a.x/d.x,b4=a.y/d.y;
+if(b1==b2&&b3==b4&&((b1/b3)==(b2/b4))){cout<<"ba diem thang hang,yippi\n";i=1;}
+float ab=sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2)),ac=sqrt(pow(a.x-d.x,2)+pow(a.y-d.y,2)),bc=sqrt(pow(b.x-d.x,2)+pow(b.y-d.y,2));
+cout<<"Khoang cach tu a den b :"<<ab<<"\nKhoang cach tu a den c :"<<ac<<"\nKhoang cach tu b den c : "<<bc;
+if (i==1)return 0;
+float cv=ab+ac+bc,p=cv/2,s=sqrt(p*(p-ab)*(p-ac)*(p-bc));
+cout<<"\nDien tich cua tam giac la : "<<s<<"\nChu vi cua tam giac la : "<<cv;
+return 0;
+}
+3)Viết chương trình quản lí điểm của sinh viên, với
+-Số lượng sinh viên là n, với n nhập từ bàn phím
+-Thông tin về sinh viên gồm:
++Họ và tên
++Ngày, tháng, năm sinh
++MSSV
++Điểm Toán,Lý,Hóa
++Điểm trung bình
+Code:
+#include <iostream>
+using namespace std;
+struct svsp{
+string hoTen;
+string dob;
+string mssv;
+float toan,li,hoa;
+public:
+friend istream& operator>> (istream& in,svsp &sv){
+getline(in,sv.hoTen);
+getline(in,sv.dob);getline(in,sv.mssv);in>>sv.toan>>sv.li>>sv.hoa;
+return in;
+}
+friend float Average (svsp& sv);
+friend ostream& operator<< (ostream& out, svsp sv){
+out<<sv.hoTen<<endl<<sv.dob<<endl<<sv.mssv<<endl<<sv.toan<<endl<<sv.li<<endl<<sv.hoa<<endl<<Average(sv);
+return out;
+}
+};
+float Average(svsp& sv){
+return (sv.toan+sv.li+sv.hoa)/3.0;
+}
+int main(){
+svsp a[2];
+cin>>a[1];
+cout<<a[1];
+}
