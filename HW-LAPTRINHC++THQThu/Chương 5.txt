@@ -98,22 +98,24 @@ string dob;
 string mssv;
 float toan,li,hoa;
 public:
+float Average ();
 friend istream& operator>> (istream& in,svsp &sv){
 getline(in,sv.hoTen);
-getline(in,sv.dob);getline(in,sv.mssv);in>>sv.toan>>sv.li>>sv.hoa;
+getline(in,sv.dob);
+getline(in,sv.mssv);
+in>>sv.toan>>sv.li>>sv.hoa;cin.ignore();
 return in;
 }
-friend float Average (svsp& sv);
 friend ostream& operator<< (ostream& out, svsp sv){
-out<<sv.hoTen<<endl<<sv.dob<<endl<<sv.mssv<<endl<<sv.toan<<endl<<sv.li<<endl<<sv.hoa<<endl<<Average(sv);
+out<<sv.hoTen<<endl<<sv.dob<<endl<<sv.mssv<<endl<<sv.toan<<endl<<sv.li<<endl<<sv.hoa<<endl<<sv.Average();
 return out;
 }
 };
-float Average(svsp& sv){
-return (sv.toan+sv.li+sv.hoa)/3.0;
+float svsp::Average(){
+return (toan+li+hoa)/3.0;
 }
 int main(){
-svsp a[2];
-cin>>a[1];
-cout<<a[1];
+svsp a[3];
+for(int i=0;i<3;i++)cin>>a[i];
+for(int i=0;i<3;i++)cout<<a[i]<<endl;
 }
